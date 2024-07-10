@@ -21,6 +21,8 @@ namespace ASP_MVC_Movie.Services
             _userManager = userManager;
         }
 
+        // This method adds comment to movie
+
         public async Task<IActionResult> AddComment(int movieId, string commentText, ClaimsPrincipal user)
         {
             if (!user.Identity.IsAuthenticated)
@@ -49,6 +51,8 @@ namespace ASP_MVC_Movie.Services
             return new RedirectToActionResult("DetailMovie", "Movie", new { id = movieId });
         }
 
+
+        // This method deletes comment to movie
 
         public async Task<IActionResult> DeleteComment(int commentId, int movieId, ClaimsPrincipal user)
         {

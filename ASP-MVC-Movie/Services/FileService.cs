@@ -14,6 +14,9 @@ namespace ASP_MVC_Movie.Services
             _uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
         }
 
+        // This method uploads movie
+
+
         public async Task<string> SaveVideoAsync(IFormFile videoFile)
         {
             if (videoFile == null || videoFile.Length == 0)

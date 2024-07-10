@@ -26,12 +26,14 @@ namespace ASP_MVC_Movie.Controllers
 
 
         [HttpGet]
+        // This method returnes html file
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        // This method if for register
         public async Task<IActionResult> Register(RegisterVM model)
         {
             if (ModelState.IsValid)
@@ -77,12 +79,14 @@ namespace ASP_MVC_Movie.Controllers
 
 
         [HttpGet]
+        // This method returns html file
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        // This method is for login
         public async Task<IActionResult> Login(LoginVM model)
         {
             if (ModelState.IsValid)
@@ -100,7 +104,8 @@ namespace ASP_MVC_Movie.Controllers
             return View(model);
         }
 
-     
+        // This method id for logout
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -109,6 +114,7 @@ namespace ASP_MVC_Movie.Controllers
 
 
         [HttpGet]
+        // This method shows all user
         public async Task<IActionResult> ShowAllUsers()
         {
             var users = await _userManagementService.GetAllUsers();
@@ -116,7 +122,7 @@ namespace ASP_MVC_Movie.Controllers
         }
 
 
-
+        // This method removes user 
         public async Task<IActionResult> RemoveUser(string userId)
         {
             var success = await _userManagementService.RemoveUser(userId);
@@ -130,6 +136,7 @@ namespace ASP_MVC_Movie.Controllers
 
 
         [HttpPost]
+        //This method edits user info
         public async Task<IActionResult> UserInfoEdit(EditUserVM model)
         {
             if (!ModelState.IsValid)

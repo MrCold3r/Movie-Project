@@ -31,7 +31,7 @@ namespace ASP_MVC_Movie.Controllers
 
 
     
-
+        // This method shows all movie with page ination
         public async Task<IActionResult> Index(int pageIndex = 1, int pageSize = 8)
         {
             IQueryable<Movie> allMovies = _context.Movies.Include(m => m.MovieGenres).ThenInclude(mg => mg.Genre);
@@ -39,7 +39,8 @@ namespace ASP_MVC_Movie.Controllers
 
             return await Paginate(allMovies, pageIndex, pageSize, "Index");
         }
-
+        
+        // This method searches movie by genre
         public async Task<IActionResult> MoviesByGenre(int genreId, int pageIndex = 1, int pageSize = 8)
         {
             IQueryable<Movie> movies = _context.Movies.Include(m => m.MovieGenres).ThenInclude(mg => mg.Genre).Where(m => m.MovieGenres.Any(mg => mg.GenreId == genreId));
@@ -48,6 +49,7 @@ namespace ASP_MVC_Movie.Controllers
             return await Paginate(movies, pageIndex, pageSize, "Index", genreId);
         }
 
+        // page ination
         private async Task<IActionResult> Paginate(IQueryable<Movie> movies, int pageIndex, int pageSize, string viewName, int? genreId = null)
         {
             var totalMovies = await movies.CountAsync();
@@ -60,6 +62,13 @@ namespace ASP_MVC_Movie.Controllers
 
             return View(viewName, paginatedMovies);
         }
+
+
+
+        // All method name says what it can
+        // All method name says what it can
+        // All method name says what it can
+
 
 
 

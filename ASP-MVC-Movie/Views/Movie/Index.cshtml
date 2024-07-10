@@ -4,6 +4,8 @@
     ViewData["Title"] = "Movies";
 }
 
+@* This is carousel *@
+
 <div id="carouselExampleAutoplaying" class="carousel slide mt-5 mb-5" data-bs-ride="carousel">
     <div class="carousel-inner">
         @foreach (var movie in Model)
@@ -36,6 +38,8 @@
     </button>
 </div>
 
+@* This is admin function and shows all users and add genres or movies *@
+
 @if (User.IsInRole("Admin"))
 {
     <div class="m-auto text-white admin-logo">
@@ -52,6 +56,8 @@
     </div>
 }
 
+@* This function shows all genre *@
+
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col-2 genre-category me-5">
@@ -59,6 +65,7 @@
             {
                 <div>
                     <a class="nav-link text-white genre-link" asp-action="MoviesByGenre" asp-route-genreId="@genre.Id">@genre.Name</a>
+                    @* This is admin functional and shows genre adding or removing method *@
                     @if (User.IsInRole("Admin"))
                     {
                         <div class="d-flex">
@@ -74,6 +81,8 @@
             }
         </div>
 
+        @* This function shows all movie *@
+
         <div class="col">
             <div class="row">
                 @foreach (var item in Model)
@@ -86,6 +95,7 @@
                             </video>
                         </a>
                         <p class="text-white">@item.Title</p>
+                        @* This is admin functional and shows movie updating or removing method *@
                         @if (User.IsInRole("Admin"))
                         {
                             <div class="d-flex">
@@ -102,7 +112,7 @@
             </div>
         </div>
     </div>
-
+    @* This is for page navigation *@
     <div class="row">
         <div class="col">
             <nav aria-label="Page navigation">

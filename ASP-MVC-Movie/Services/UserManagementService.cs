@@ -18,6 +18,8 @@ namespace ASP_MVC_Movie.Services
             _environment = environment;
         }
 
+        // This method edits user info
+
         public async Task<bool> EditUserInfo(string userId, EditUserVM model)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -47,10 +49,14 @@ namespace ASP_MVC_Movie.Services
             return result.Succeeded;
         }
 
+        // This method gets all user 
+
         public async Task<IEnumerable<AppUser>> GetAllUsers()
         {
             return await _userManager.Users.ToListAsync();
         }
+
+        // This method removes user
 
         public async Task<bool> RemoveUser(string userId)
         {

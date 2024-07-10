@@ -14,15 +14,21 @@ namespace ASP_MVC_Movie.Services
             _context = context;
         }
 
+        // This method shows all genres
+
         public async Task<IEnumerable<Genre>> GetAllGenres()
         {
             return await _context.Genres.ToListAsync();
         }
 
+        // This method finds specifical genre
+
         public async Task<Genre> GetGenreById(int id)
         {
             return await _context.Genres.FindAsync(id);
         }
+
+        // This method creates genre field
 
         public async Task CreateGenre(Genre genre)
         {
@@ -30,11 +36,15 @@ namespace ASP_MVC_Movie.Services
             await _context.SaveChangesAsync();
         }
 
+        // This method updates genres
+
         public async Task UpdateGenre(Genre genre)
         {
             _context.Update(genre);
             await _context.SaveChangesAsync();
         }
+
+        // This method removes genre field
 
         public async Task<bool> RemoveGenre(int id)
         {
@@ -46,6 +56,8 @@ namespace ASP_MVC_Movie.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        // This method checks if genre exists
 
         public bool GenreExists(int id)
         {

@@ -13,6 +13,7 @@ namespace ASP_MVC_Movie.Controllers
             _commentService = commentService;
         }
 
+        // All method name says what it can
 
         [HttpPost]
         public async Task<IActionResult> AddComment(int movieId, string commentText)

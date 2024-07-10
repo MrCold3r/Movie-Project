@@ -2,6 +2,7 @@
 
 namespace ASP_MVC_Movie.ViewModel
 {
+
     public class EditUserVM
     {
 

@@ -18,6 +18,7 @@ namespace ASP_MVC_Movie.Services
             _environment = environment;
         }
 
+        // This method finds specifical movie
 
         public async Task<Movie> GetMovieByIdAsync(int id)
         {
@@ -29,30 +30,34 @@ namespace ASP_MVC_Movie.Services
             return await _context.Movies.ToListAsync();
         }
 
+        // This method adds movie
+
         public async Task CreateMovieAsync(Movie movie)
         {
-            //if (movie.VideoFile != null && movie.VideoFile.Length > 0)
-            //{
-            //    var uploadsFolder = Path.Combine(_environment.WebRootPath, "videos");
+            if (movie.VideoFile != null && movie.VideoFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(_environment.WebRootPath, "videos");
 
-            //    if (!Directory.Exists(uploadsFolder))
-            //    {
-            //        Directory.CreateDirectory(uploadsFolder);
-            //    }
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
 
-            //    var uniqueFileName = Guid.NewGuid().ToString() + "_" + movie.VideoFile.FileName;
-            //    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + movie.VideoFile.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-            //    using (var fileStream = new FileStream(filePath, FileMode.Create))
-            //    {
-            //        await movie.VideoFile.CopyToAsync(fileStream);
-            //    }
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await movie.VideoFile.CopyToAsync(fileStream);
+                }
 
-            //    movie.FilePath = "/videos/" + uniqueFileName;
-            //}
+                movie.FilePath = "/videos/" + uniqueFileName;
+            }
             _context.Add(movie);
             await _context.SaveChangesAsync();
         }
+
+        // This method updates movie
 
         public async Task UpdateMovieAsync(Movie movie)
         {
@@ -79,6 +84,8 @@ namespace ASP_MVC_Movie.Services
             await _context.SaveChangesAsync();
         }
 
+        // This method deletes movie
+
         public async Task RemoveMovieAsync(int id)
         {
             var movie = await _context.Movies.FindAsync(id);
@@ -90,6 +97,7 @@ namespace ASP_MVC_Movie.Services
         }
 
 
+        // This method shows movie details
 
 
         public async Task<Movie> GetMovieDetailsAsync(int id)
@@ -103,20 +111,8 @@ namespace ASP_MVC_Movie.Services
         }
 
 
+        // This method checks if movie exists
 
-
-
-
-
-
-        //public async Task<Movie> GetMovieDetailsAsync(int id)
-        //{
-        //    return await _context.Movies
-        //        .Include(m => m.Genre)
-        //        .Include(m => m.Comments)
-        //        .ThenInclude(c => c.User)
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //}
 
         public bool MovieExists(int id)
         {

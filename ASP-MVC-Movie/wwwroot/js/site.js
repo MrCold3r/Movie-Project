@@ -2,7 +2,7 @@
 
 
 
-
+// This function is for live search
 
 $(document).ready(function () {
     $('#searchInput').on('input', function () {

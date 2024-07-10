@@ -16,6 +16,7 @@ namespace ASP_MVC_Movie.Controllers
 
 
         [HttpGet]
+        // This method searches movie by title
         public async Task<IActionResult> SearchByTitle(string query)
         {
             var searchResults = await _searchService.SearchMoviesAsync(query);

@@ -7,20 +7,26 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// This is services registrations. All service name says for what it is.
+// This is services registrations. All service name says for what it is.
+// This is services registrations. All service name says for what it is.
+
+
 builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddScoped<ICommentService, CommentService>();  
 builder.Services.AddTransient<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<IFileService, FileService>();
-
 builder.Services.AddControllersWithViews();
+// This is for comunicating with database
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("Movie"));
 });
 
 
+// This is for authorithation
 
 builder.Services.AddIdentity<AppUser, IdentityRole>()
            .AddEntityFrameworkStores<AppDbContext>()
@@ -56,13 +62,14 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseAuthentication();
 
-
+// This is for user roles
 
 using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
     AppDbContext.EnsureRolesCreated(serviceScope.ServiceProvider).Wait();
 }
+
 
 
 

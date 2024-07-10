@@ -1,5 +1,7 @@
 
 
+// This is for showing password
+
 document.addEventListener("DOMContentLoaded", function () {
 
     var registrationPasswordInput = document.getElementById("passwordInput");

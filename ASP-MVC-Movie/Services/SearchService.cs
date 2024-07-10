@@ -15,6 +15,8 @@ namespace ASP_MVC_Movie.Services
             _context = context;
         }
 
+        // live seatch by title
+
         public async Task<IEnumerable<Object>> SearchMoviesAsync(string query)
         {
             var searchResults = await _context.Movies

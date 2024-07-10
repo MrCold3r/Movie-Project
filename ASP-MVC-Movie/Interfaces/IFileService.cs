@@ -2,6 +2,8 @@
 {
     public interface IFileService
     {
+        // All method name says what it can
+
         Task<string> SaveVideoAsync(IFormFile videoFile);
     }
 }
